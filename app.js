@@ -4,12 +4,6 @@ const createDivBox = (taskName) => {
     divContainer.setAttribute("id", taskName)
     return divContainer;
 }
-
-// const convertFirstLetter = (newTask) => {
-//     var capitalizedWord = newTask[0].toUpperCase() + newTask.slice(1)
-//     return capitalizedWord;
-// }
-
 const createLiTag = (newTask) => {
     var liTag = document.createElement("li");
     liTag.setAttribute("class", "task-name");
@@ -17,7 +11,6 @@ const createLiTag = (newTask) => {
     liTag.textContent = newTask;
     return liTag;
 }
-
 const createDeleteButton = (taskName) => {
     var deleteBtn = document.createElement("button");
     deleteBtn.setAttribute("class", "deleteTask")
@@ -26,43 +19,30 @@ const createDeleteButton = (taskName) => {
     deleteBtn.textContent = "Delete";
     return deleteBtn;
 }
-
 var allTasks = []
 var ulTag = document.getElementById("items");
 var timeBox = document.getElementById("timeBox");
 var dateItem = document.createElement("h3");
-
 dateItem.textContent = new Date().toLocaleDateString();
 dateItem.setAttribute("id", "date")
 timeBox.appendChild(dateItem)
-
-
 var timeItem = document.createElement("h3");
 timeItem.setAttribute("id", "time")
 timeItem.textContent = new Date().toLocaleTimeString();
 timeBox.appendChild(timeItem)
-
 var prevTasks = localStorage.getItem("allTasks");
-
-
 if (prevTasks != null && prevTasks.length > 0) {
     var prevTasksArr = prevTasks.split(",");
     allTasks = prevTasksArr;
-
     prevTasksArr.forEach(newTask => {
         var divContainer = createDivBox(newTask);
-
         var liTag = createLiTag(newTask)
-
         var deleteBtn = createDeleteButton(newTask);
-
         divContainer.appendChild(liTag);
         divContainer.appendChild(deleteBtn)
         ulTag.appendChild(divContainer)
-
     })
 }
-
 const addTask = () => {
     let newTask = document.getElementById("newTask").value;
     newTask = newTask.trim();
@@ -70,15 +50,12 @@ const addTask = () => {
         var lowerValueTask = newTask.toLowerCase();
         if (allTasks.indexOf(lowerValueTask) == -1) {
             allTasks.push(lowerValueTask);
-
             var divContainer = createDivBox(lowerValueTask);
             var liTag = createLiTag(lowerValueTask)
             var deleteBtn = createDeleteButton(lowerValueTask);
-
             divContainer.appendChild(liTag);
             divContainer.appendChild(deleteBtn)
             ulTag.appendChild(divContainer)
-
             localStorage.setItem("allTasks", allTasks);
             document.getElementById("newTask").value = "";
         } else {
@@ -91,8 +68,6 @@ const addTask = () => {
         window.alert("Task shouldn't be empty");
     }
 }
-
-
 const deleteTask = (e) => {
     e = e || window.event;
     e = e.target || e.srcElement;
