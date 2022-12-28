@@ -5,16 +5,16 @@ const createDivBox = (taskName) => {
     return divContainer;
 }
 
-const convertFirstLetter = (newTask) => {
-    var capitalizedWord = newTask[0].toUpperCase() + newTask.slice(1)
-    return capitalizedWord;
-}
+// const convertFirstLetter = (newTask) => {
+//     var capitalizedWord = newTask[0].toUpperCase() + newTask.slice(1)
+//     return capitalizedWord;
+// }
 
 const createLiTag = (newTask) => {
     var liTag = document.createElement("li");
     liTag.setAttribute("class", "task-name");
     liTag.setAttribute("id", `task-${newTask}`)
-    liTag.textContent = convertFirstLetter(newTask);
+    liTag.textContent = newTask;
     return liTag;
 }
 
@@ -97,11 +97,11 @@ const deleteTask = (e) => {
     e = e || window.event;
     e = e.target || e.srcElement;
     if (e.nodeName === 'BUTTON') {
-        var taskContainer = document.getElementById(`${e.id}`)
+        var taskContainer = document.getElementById(`${e.id}`);
         var taskName = document.getElementById(`task-${e.id}`).textContent;
         allTasks = allTasks.filter(task => {
-            return task !== taskName
-        })
+            return task !== taskName;
+        });
         localStorage.setItem("allTasks", allTasks);
         taskContainer.remove();
     }
