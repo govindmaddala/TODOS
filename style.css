@@ -142,6 +142,30 @@ body {
 }
 @media screen and (min-width: 600px) {
   .taskItem li {
-    animation: increaseItem 2s 1;
+    animation: increaseItem 0.5s 1;
+  }
+}
+.taskItemDelete{
+  animation: invisible 0.5s 1;
+}
+
+@keyframes invisible {
+  0%{
+      opacity: 1;
+  }
+  20%{
+      opacity: 0.8;
+  }
+  40%{
+      opacity: 0.6;
+  }
+  60%{
+      opacity: 0.4;
+  }
+  80%{
+      opacity: 0.2;
+  }
+  100%{
+      opacity: 0;
   }
 }
